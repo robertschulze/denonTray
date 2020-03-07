@@ -6,7 +6,7 @@ icon's context menu. Double-clicking the tray icon turns on the receiver.
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/robertschulze/denonTray/blob/master/screenshot.png?raw=True"><img src="https://github.com/robertschulze/denonTray/raw/master/screenshot.png?raw=True" alt="Screenshot" width="220"></a>
 
 The tool is based on the [denonavr](https://github.com/scarface-4711/denonavr)
-and [info.systray](https://github.com/Infinidat/infi.systray) packages.
+and [infi.systray](https://github.com/Infinidat/infi.systray) packages.
 
 #### Configuration
 The configuration is maintained in ```config.yml``` file. 
