@@ -26,7 +26,8 @@ def volume_up(systray):
     d.set_volume(v1 + 5)
     d.update()
     v2 = d.volume
-    print("Volume turned up from %i to %i." % (v1 + DB_OFFSET, v2 + DB_OFFSET))
+    print("Volume turned up from %i to %i."
+          % (v1 + DB_OFFSET, v2 + DB_OFFSET))
 
 
 def volume_down(systray):
@@ -35,7 +36,8 @@ def volume_down(systray):
     d.set_volume(v1 - 5)
     d.update()
     v2 = d.volume
-    print("Volume turned down from %i to %i." % (v1 + DB_OFFSET, v2 + DB_OFFSET))
+    print("Volume turned down from %i to %i."
+          % (v1 + DB_OFFSET, v2 + DB_OFFSET))
 
 
 # initialize connection
@@ -45,8 +47,10 @@ d = denonavr.DenonAVR(RECEIVER_ADDRESS)
 source_selectors = []
 for source in d.input_func_list:
     source_short = ''.join(x for x in source if x.isalpha())
-    exec("def select_%s(systray): d.input_func = '%s'" % (source_short, source))
-    source_selectors += [("Select %s" % source, None, eval("select_%s" % source_short))]
+    exec("def select_%s(systray): d.input_func = '%s'"
+         % (source_short, source))
+    source_selectors += \
+        [("Select %s" % source, None, eval("select_%s" % source_short))]
 
 # build up full set of tray icon menu options
 menu_options = [("Power On", None, power_on),
