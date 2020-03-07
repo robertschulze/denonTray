@@ -1,50 +1,60 @@
 import denonavr
+import yaml
 from infi.systray import SysTrayIcon
 
-d = denonavr.DenonAVR("192.168.3.46")
+config = yaml.safe_load(open("config.yml"))
+RECEIVER_ADDRESS = config.get("receiver_address")
+DB_OFFSET = config.get("receiver_address", 80)
 
-dB_add = 80
+if RECEIVER_ADDRESS in None:
+    raise (Exception("You need to set a receiver_address in config.yml"))
 
 
-def powerOn(systray):
+def power_on(systray):
     d.power_on()
     print("Turned On.")
 
 
-def powerOff(systray):
+def power_off(systray):
     d.power_off()
     print("Turned Off.")
 
 
-def volUp(systray):
+def volume_up(systray):
     d.update()
     v1 = d.volume
     d.set_volume(v1 + 5)
     d.update()
     v2 = d.volume
-    print("Volume turned up from %i to %i." % (v1 + dB_add, v2 + dB_add))
+    print("Volume turned up from %i to %i." % (v1 + DB_OFFSET, v2 + DB_OFFSET))
 
 
-def volDown(systray):
+def volume_down(systray):
     d.update()
     v1 = d.volume
     d.set_volume(v1 - 5)
     d.update()
     v2 = d.volume
-    print("Volume turned down from %i to %i." % (v1 + dB_add, v2 + dB_add))
+    print("Volume turned down from %i to %i." % (v1 + DB_OFFSET, v2 + DB_OFFSET))
 
 
-selectors = []
+# initialize connection
+d = denonavr.DenonAVR(RECEIVER_ADDRESS)
+
+# create source selection menu options
+source_selectors = []
 for source in d.input_func_list:
     source_short = ''.join(x for x in source if x.isalpha())
     exec("def select_%s(systray): d.input_func = '%s'" % (source_short, source))
-    selectors += [("Select %s" % source, None, eval("select_%s" % source_short))]
+    source_selectors += [("Select %s" % source, None, eval("select_%s" % source_short))]
 
-menu_options = [("Power On", None, powerOn),
-                ("Power Off", None, powerOff),
-                ("Volume Up", None, volUp),
-                ("Volume Down", None, volDown),
-                ] + selectors
+# build up full set of tray icon menu options
+menu_options = [("Power On", None, power_on),
+                ("Power Off", None, power_off),
+                ("Volume Up", None, volume_up),
+                ("Volume Down", None, volume_down),
+                ] + source_selectors
 
-systray = SysTrayIcon(r"c:\dokumente\Private\Coding\DenonGui\denon.ico", "DenonAvr GUI", tuple(menu_options))
+# create tray icon and start main loop
+systray = SysTrayIcon(r"denon.ico", "denonTray", tuple(menu_options))
 systray.start()
