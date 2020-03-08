@@ -46,9 +46,8 @@ def volume_up(tray):
     AVR.set_volume(volume_before + 5)
     AVR.update()
     volume_after = AVR.volume
-    print(
-        "Volume turned up from %i to %i."
-        % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
+    print("Volume turned up from %i to %i." % (volume_before + DB_OFFSET,
+                                               volume_after + DB_OFFSET))
     return tray
 
 
@@ -59,9 +58,8 @@ def volume_down(tray):
     AVR.set_volume(volume_before - 5)
     AVR.update()
     volume_after = AVR.volume
-    print(
-        "Volume turned down from %i to %i."
-        % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
+    print("Volume turned down from %i to %i." % (volume_before + DB_OFFSET,
+                                                 volume_after + DB_OFFSET))
     return tray
 
 
