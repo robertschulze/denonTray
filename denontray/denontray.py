@@ -75,16 +75,15 @@ SOURCE_SELECTORS = []
 for source in AVR.input_func_list:
     source_short = "".join(x for x in source if x.isalpha())
     exec("def select_%s(systray): d.input_func = '%s'" % (source_short, source))
-    SOURCE_SELECTORS += [
-        ("Select %s" % source, None, eval("select_%s" % source_short))]
+    SOURCE_SELECTORS += [("Select %s" % source, None, eval("select_%s" % source_short))]
 
 # build up full set of tray icon menu options
 MENU_OPTIONS = [
-                   ("Power On", None, power_on),
-                   ("Power Off", None, power_off),
-                   ("Volume Up", None, volume_up),
-                   ("Volume Down", None, volume_down),
-               ] + SOURCE_SELECTORS
+    ("Power On", None, power_on),
+    ("Power Off", None, power_off),
+    ("Volume Up", None, volume_up),
+    ("Volume Down", None, volume_down),
+] + SOURCE_SELECTORS
 
 # create tray icon and start main loop
 SYSTRAY = SysTrayIcon(
