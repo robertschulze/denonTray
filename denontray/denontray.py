@@ -27,25 +27,25 @@ if RECEIVER_ADDRESS is None:
 
 def power_on(tray):
     """Power On."""
-    d.power_on()
+    AVR.power_on()
     print("Turned On.")
     return tray
 
 
 def power_off(tray):
     """Power Off."""
-    d.power_off()
+    AVR.power_off()
     print("Turned Off.")
     return tray
 
 
 def volume_up(tray):
     """Volume Up by 5dB."""
-    d.update()
-    volume_before = d.volume
-    d.set_volume(volume_before + 5)
-    d.update()
-    volume_after = d.volume
+    AVR.update()
+    volume_before = AVR.volume
+    AVR.set_volume(volume_before + 5)
+    AVR.update()
+    volume_after = AVR.volume
     print("Volume turned up from %i to %i."
           % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
     return tray
@@ -53,22 +53,22 @@ def volume_up(tray):
 
 def volume_down(tray):
     """Volume Down by 5dB."""
-    d.update()
-    volume_before = d.volume
-    d.set_volume(volume_before - 5)
-    d.update()
-    volume_after = d.volume
+    AVR.update()
+    volume_before = AVR.volume
+    AVR.set_volume(volume_before - 5)
+    AVR.update()
+    volume_after = AVR.volume
     print("Volume turned down from %i to %i."
           % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
     return tray
 
 
 # initialize connection
-d = denonavr.DenonAVR(RECEIVER_ADDRESS)
+AVR = denonavr.DenonAVR(RECEIVER_ADDRESS)
 
 # create source selection menu options
 SOURCE_SELECTORS = []
-for source in d.input_func_list:
+for source in AVR.input_func_list:
     source_short = ''.join(x for x in source if x.isalpha())
     exec("def select_%s(systray): d.input_func = '%s'"
          % (source_short, source))
