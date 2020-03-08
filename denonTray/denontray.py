@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# """System tray remote-control tool for Denon AVR receivers."""
 import os
 
 import denonavr
@@ -23,16 +26,19 @@ if RECEIVER_ADDRESS is None:
 
 
 def power_on(systray):
+    """ Power On """
     d.power_on()
     print("Turned On.")
 
 
 def power_off(systray):
+    """ Power Off """
     d.power_off()
     print("Turned Off.")
 
 
 def volume_up(systray):
+    """ Volume Up by 5dB """
     d.update()
     v1 = d.volume
     d.set_volume(v1 + 5)
@@ -43,6 +49,7 @@ def volume_up(systray):
 
 
 def volume_down(systray):
+    """ Volume Down by 5dB """
     d.update()
     v1 = d.volume
     d.set_volume(v1 - 5)

@@ -1,3 +1,4 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from .denonTray import systray, d
+"""System tray remote-control tool for Denon AVR receivers."""
+from .denontray import systray, d
