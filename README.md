@@ -20,4 +20,4 @@ home network, namely the hostname or IP address of you receiver:
 2. Install dependencies, e.g. via
 ``` pip install denonavr infi.systray ```
 3. Download or clone this repository
-4. Place your receiver in ```config.yml```, then start ```denonTray.py```
+4. Place your receiver in ```config.yml```, then start ```denontray.py```
