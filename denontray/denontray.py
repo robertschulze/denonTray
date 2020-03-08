@@ -75,9 +75,8 @@ AVR = denonavr.DenonAVR(RECEIVER_ADDRESS)
 SOURCE_SELECTORS = []
 for source in AVR.input_func_list:
     source_short = "".join(x for x in source if x.isalpha())
-    exec(
-        "def select_%s(systray): d.input_func = '%s'" % (source_short, source)
-    )
+    exec("def select_%s(systray): AVR.input_func = '%s'"
+         % (source_short, source))
     SOURCE_SELECTORS += [
         ("Select %s" % source, None, eval("select_%s" % source_short))
     ]
