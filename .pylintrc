@@ -44,5 +44,6 @@ disable=
 overgeneral-exceptions=Exception
 
 [MESSAGES CONTROL]
+# W0122: Use of exec (exec-used)
 # W0123: Use of eval (eval-used)
-disable=W0123
+disable=W0122, W0123
