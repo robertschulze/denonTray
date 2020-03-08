@@ -42,3 +42,7 @@ disable=
 
 [EXCEPTIONS]
 overgeneral-exceptions=Exception
+
+[MESSAGES CONTROL]
+# W0123: Use of eval (eval-used)
+disable=W0123

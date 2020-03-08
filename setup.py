@@ -3,7 +3,7 @@
 """System tray remote-control tool for Denon AVR receivers."""
 from setuptools import find_packages, setup
 
-setup(name='denonTray',
+setup(name='denontray',
       version='0.1',
       description='System tray remote-control tool for Denon AVR receivers',
       long_description=
