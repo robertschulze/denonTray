@@ -1,0 +1,12 @@
+pydocstyle
+pylint
+pytest
+pytest-cov
+pytest-timeout
+flake8-docstrings
+flake8
+requests_mock
+testtools
+denonavr
+infi.systray
+pyyaml
