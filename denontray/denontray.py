@@ -29,12 +29,14 @@ def power_on(tray):
     """Power On."""
     d.power_on()
     print("Turned On.")
+    return tray
 
 
 def power_off(tray):
     """Power Off."""
     d.power_off()
     print("Turned Off.")
+    return tray
 
 
 def volume_up(tray):
@@ -46,6 +48,7 @@ def volume_up(tray):
     volume_after = d.volume
     print("Volume turned up from %i to %i."
           % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
+    return tray
 
 
 def volume_down(tray):
@@ -57,6 +60,7 @@ def volume_down(tray):
     volume_after = d.volume
     print("Volume turned down from %i to %i."
           % (volume_before + DB_OFFSET, volume_after + DB_OFFSET))
+    return tray
 
 
 # initialize connection
