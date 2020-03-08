@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """System tray remote-control tool for Denon AVR receivers."""
+# c:\Portable\Anaconda37\Scripts\black.exe denontray --line-length=79
 import os
 
 import denonavr
@@ -74,8 +75,12 @@ AVR = denonavr.DenonAVR(RECEIVER_ADDRESS)
 SOURCE_SELECTORS = []
 for source in AVR.input_func_list:
     source_short = "".join(x for x in source if x.isalpha())
-    exec("def select_%s(systray): d.input_func = '%s'" % (source_short, source))
-    SOURCE_SELECTORS += [("Select %s" % source, None, eval("select_%s" % source_short))]
+    exec(
+        "def select_%s(systray): d.input_func = '%s'" % (source_short, source)
+    )
+    SOURCE_SELECTORS += [
+        ("Select %s" % source, None, eval("select_%s" % source_short))
+    ]
 
 # build up full set of tray icon menu options
 MENU_OPTIONS = [
