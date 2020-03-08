@@ -20,7 +20,7 @@ else:
 CONFIG = yaml.safe_load(open(os.path.join(WORK_DIR, CONFIG_NAME)))
 
 RECEIVER_ADDRESS = CONFIG.get("receiver_address")
-DB_OFFSET = CONFIG.get("receiver_address", 80)
+DB_OFFSET = CONFIG.get("db_offset", 80)
 
 if RECEIVER_ADDRESS is None:
     raise Exception("You need to set a receiver_address in config.yml")
